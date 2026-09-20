@@ -200,25 +200,25 @@ The Power BI report contains four analytical pages.
 
 High-level business performance: Total Sales, Total Profit, Profit Margin, Total Orders, Total Customers, Monthly Sales Trend, Sales vs Profit, Order Status, and Region-wise Sales.
 
-![Executive Overview](screenshots/01_executive_overview.png)
+![Executive Overview](screenshots/Executive%20_Overview.png)
 
 ### Page 2: Product Performance
 
 Top 10 Products by Sales and Profit, Category Performance, Product Profit Margin, and Quantity vs Sales. Identifies high-revenue, high-profit, and high-margin products, and where sales and profitability differ.
 
-![Product Performance](screenshots/02_product_performance.png)
+![Product Performance](screenshots/Product_Performance.png)
 
 ### Page 3: Customer Intelligence
 
 Top 10 Customers by Sales, RFM Segment Count and Sales, Customer Value Segment Count and Sales. Shows customer contribution, loyalty, retention opportunities, and at-risk customers.
 
-![Customer Intelligence](screenshots/03_customer_intelligence.png)
+![Customer Intelligence](screenshots/Customer_Intelligence.png)
 
 ### Page 4: Business Performance
 
 Payment Method Analysis, Order Status Analysis, Discount Analysis, Monthly Profit Margin, and Executive KPI Cards. Focuses on payment behavior, fulfillment issues, discount patterns, and profitability trends.
 
-![Business Performance](screenshots/04_business_performance.png)
+![Business Performance](screenshots/Business_Performance.png)
 
 ---
 
