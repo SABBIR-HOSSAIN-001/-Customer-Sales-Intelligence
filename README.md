@@ -270,4 +270,4 @@ Aspiring Data Analyst | BI Engineer
 Python | SQL | PostgreSQL | Power BI | Excel
 
 - LinkedIn: [sabbir-hossain-2001da](https://www.linkedin.com/in/sabbir-hossain-2001da)
-- GitHub: [SABBIR-HOSSAIN-001](https://github.com/SABBIR-HOSSAIN-001)f
+- GitHub: [SABBIR-HOSSAIN-001](https://github.com/SABBIR-HOSSAIN-001)
