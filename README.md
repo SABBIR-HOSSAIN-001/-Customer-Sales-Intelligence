@@ -2,6 +2,12 @@
 
 **End-to-end analytics project: Python → PostgreSQL → Power BI → Business Insights**
 
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white)
+![Power BI](https://img.shields.io/badge/Power_BI-F2C811?logo=powerbi&logoColor=black)
+![Excel](https://img.shields.io/badge/Excel-217346?logo=microsoftexcel&logoColor=white)
+
 ---
 
 ## Table of Contents
@@ -75,12 +81,13 @@ Customer_Sales_Intelligence/
 │   └── SQL_Analysis.sql
 │
 ├── PowerBI/
-│   ├── Customer_Sales_Intelligence.pbix
-│   └── screenshots/
-│       ├── 01_executive_overview.png
-│       ├── 02_product_performance.png
-│       ├── 03_customer_intelligence.png
-│       └── 04_business_performance.png
+│   └── Customer_Sales_Intelligence.pbix
+│
+├── screenshots/
+│   ├── 01_executive_overview.png
+│   ├── 02_product_performance.png
+│   ├── 03_customer_intelligence.png
+│   └── 04_business_performance.png
 │
 ├── Data/
 │   └── Customer_Sales_Intelligence_cleaned.xlsx
@@ -193,25 +200,25 @@ The Power BI report contains four analytical pages.
 
 High-level business performance: Total Sales, Total Profit, Profit Margin, Total Orders, Total Customers, Monthly Sales Trend, Sales vs Profit, Order Status, and Region-wise Sales.
 
-![Executive Overview](PowerBI/screenshots/01_executive_overview.png)
+![Executive Overview](screenshots/01_executive_overview.png)
 
 ### Page 2: Product Performance
 
 Top 10 Products by Sales and Profit, Category Performance, Product Profit Margin, and Quantity vs Sales. Identifies high-revenue, high-profit, and high-margin products, and where sales and profitability differ.
 
-![Product Performance](PowerBI/screenshots/02_product_performance.png)
+![Product Performance](screenshots/02_product_performance.png)
 
 ### Page 3: Customer Intelligence
 
 Top 10 Customers by Sales, RFM Segment Count and Sales, Customer Value Segment Count and Sales. Shows customer contribution, loyalty, retention opportunities, and at-risk customers.
 
-![Customer Intelligence](PowerBI/screenshots/03_customer_intelligence.png)
+![Customer Intelligence](screenshots/03_customer_intelligence.png)
 
 ### Page 4: Business Performance
 
 Payment Method Analysis, Order Status Analysis, Discount Analysis, Monthly Profit Margin, and Executive KPI Cards. Focuses on payment behavior, fulfillment issues, discount patterns, and profitability trends.
 
-![Business Performance](PowerBI/screenshots/04_business_performance.png)
+![Business Performance](screenshots/04_business_performance.png)
 
 ---
 
@@ -262,5 +269,5 @@ Aspiring Data Analyst | BI Engineer
 
 Python | SQL | PostgreSQL | Power BI | Excel
 
-- LinkedIn: [your-linkedin-url](https://www.linkedin.com/in/your-username)
-- GitHub: [your-github-username](https://github.com/your-username)
+- LinkedIn: [sabbir-hossain-2001da](https://www.linkedin.com/in/sabbir-hossain-2001da)
+- GitHub: [SABBIR-HOSSAIN-001](https://github.com/SABBIR-HOSSAIN-001)
