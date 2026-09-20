@@ -130,4 +130,3 @@ Payment methods, order status, discount impact and monthly margin.
 
 **Sabbir Hossain**, aspiring Data Analyst | BI Engineer
 Python · SQL · PostgreSQL · Power BI · Excel
-
