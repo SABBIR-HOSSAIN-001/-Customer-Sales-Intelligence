@@ -1,132 +1,266 @@
 # Customer Sales Intelligence
 
-End-to-end customer sales analytics project using **Python, PostgreSQL and Power BI**: RFM segmentation, customer profitability, discount analysis, and business recommendations.
+**End-to-end analytics project: Python → PostgreSQL → Power BI → Business Insights**
 
-![Dashboard Preview](images/01_executive_overview.png)
+---
 
-## Headline Findings
+## Table of Contents
+
+- [Project Overview](#project-overview)
+- [Key Results](#key-results)
+- [Tools & Technologies](#tools--technologies)
+- [Project Structure](#project-structure)
+- [Dataset](#dataset)
+- [Methodology](#methodology)
+- [Dashboard Preview](#dashboard-preview)
+- [Key Business Insights](#key-business-insights)
+- [Business Recommendations](#business-recommendations)
+- [Skills Demonstrated](#skills-demonstrated)
+- [Author](#author)
+
+---
+
+## Project Overview
+
+**Customer Sales Intelligence** analyzes customer behavior, sales performance, profitability, product performance, and business operations, turning raw transactional data into actionable business insights and recommendations.
+
+**Business questions answered:**
+
+- How is the business performing overall?
+- Which products generate the most sales and profit?
+- Which customers contribute the most revenue, and which are at risk of becoming inactive?
+- How does customer value differ across segments?
+- How do discounts affect sales and profitability?
+- Which payment methods perform better?
+- How do cancellations and returns affect operations?
+- How do sales and profitability change over time?
+
+---
+
+## Key Results
 
 | Metric | Value |
-| --- | --- |
-| Total Sales | 609.53M `<currency>` |
-| Total Profit | 84.98M (13.94% margin) |
-| Orders / Customers | 10,000 / 1,498 |
-| Delivered / Cancelled / Returned | 91.20% / 4.96% / 3.84% |
+|--------|-------|
+| Total Sales | 609.53M |
+| Total Profit | 84.98M |
+| Profit Margin | 13.94% |
+| Total Orders | 10,000 |
+| Total Customers | 1,498 |
+| Average Order Value | 60,952.82 |
+| Delivery / Cancellation / Return Rate | 91.20% / 4.96% / 3.84% |
 
-1. **Revenue is concentrated.** The top customer-value tercile (High Value) generates 59.6% of sales, so retention matters most there.
-2. **Big customers are not the most profitable.** High Value customers have the *lowest* margin (13.28%), against 16.36% for Low Value.
-3. **At-Risk customers are worth winning back.** 267 customers have generated 129.82M in historical sales but show weak recent activity.
-4. **Sales volume does not equal profit.** PROD-018 has 26.29M in sales at an 8.16% margin. PROD-054 has 23.40M at 17.05%.
-5. **Discounts show no clear payoff.** Correlation with sales is -0.055 and with profit is -0.065, which is weak and not causal.
+---
 
-## Workflow
+## Tools & Technologies
 
-`Python (clean, EDA, RFM)` → `PostgreSQL (SQL analysis)` → `Power BI (4-page dashboard)` → `Insights & recommendations`
+| Tool | Purpose |
+|------|---------|
+| Python (Pandas, NumPy, Matplotlib) | Data cleaning, EDA, customer segmentation, RFM analysis |
+| PostgreSQL + pgAdmin | SQL-based business analysis |
+| Power BI | Interactive dashboards |
+| Excel | Initial data inspection and validation |
+| GitHub | Documentation and portfolio presentation |
 
-## Repository Contents
+---
 
-```
-├── images/                                      # dashboard screenshots
-├── Customer_Sales_Intelligence--python.ipynb    # cleaning, EDA, RFM, profitability
-├── Customers_Sales_Intelligence__sql.query.sql  # PostgreSQL analysis
-├── Customer_Sales_Intelligence-BI.pbix          # Power BI dashboard
-├── Customer_Sales_Intelligence_cleaned.xlsx     # cleaned dataset
-├── RFM_Customer_Segments.csv                    # RFM output
+## Project Structure
+
+```text
+Customer_Sales_Intelligence/
+│
+├── Python/
+│   └── Customer_Sales_Intelligence.ipynb
+│
+├── PostgreSQL/
+│   └── SQL_Analysis.sql
+│
+├── PowerBI/
+│   ├── Customer_Sales_Intelligence.pbix
+│   └── screenshots/
+│       ├── 01_executive_overview.png
+│       ├── 02_product_performance.png
+│       ├── 03_customer_intelligence.png
+│       └── 04_business_performance.png
+│
+├── Data/
+│   └── Customer_Sales_Intelligence_cleaned.xlsx
+│
 └── README.md
 ```
 
-## Data
+---
 
-- **Source:** `<TODO: Kaggle link / synthetic / company data>`
-- **Size:** 10,000 orders, 1,498 customers
-- **Currency:** `<TODO: e.g. BDT>`
-- **Data model:** `Orders` (fact table) linked to `Customers` (with Region), `Products` (with Category) and the RFM segment table.
-- **Order columns:** Order_ID, Order_Date, Customer_ID, Product_ID, Quantity, Discount, Sales, Profit, Payment_Method, Order_Status
+## Dataset
 
-**Cleaning notes**
-- Checked types, missing values, duplicates, unique Order_ID, and business rules (quantity, discount, sales, profit).
-- Undefined payment methods were labelled `Unknown` instead of dropped.
-- Cancelled and returned orders have zero sales and profit in the data, so they are treated as operational outcomes. No financial loss is assumed.
+E-commerce transactional dataset with **10,000 orders** and approximately **1,500 customers**.
+
+| Column | Description |
+|--------|-------------|
+| Order_ID | Unique order identifier |
+| Order_Date | Date of the order |
+| Customer_ID | Unique customer identifier |
+| Product_ID | Unique product identifier |
+| Quantity | Number of products purchased |
+| Discount | Discount applied to the order |
+| Sales | Revenue generated from the order |
+| Profit | Profit generated from the order |
+| Payment_Method | Payment method used |
+| Order_Status | Current status of the order |
+
+---
 
 ## Methodology
 
-**Customer value segments.** Customers are split into three equal groups (`NTILE(3)`) by total sales: Low, Medium, High.
+### 1. Data Preparation & Validation
 
-| Segment | Customers | Orders | Sales | Margin |
-| --- | --- | --- | --- | --- |
+Checks performed: data types, missing values, duplicates, unique Order IDs, and quantity, discount, sales, profit, payment method, order status, and business-rule validation.
+
+**Key findings:**
+
+- A small number of undefined payment methods were labeled **Unknown** instead of being deleted, preserving the original transactions.
+- Cancelled and returned orders have zero recorded sales and profit, so they were treated as operational outcomes rather than assuming direct financial losses.
+
+### 2. Python Analysis
+
+- **Business KPIs:** orders, customers, sales, profit, average order value, profit margin, delivery / cancellation / return rates
+- **Monthly analysis:** sales, profit, orders, margin, month-over-month growth
+- **Product analysis:** sales, profit, margin, quantity, ranking
+- **Customer analysis:** sales, profit, order frequency, average order value, margin
+
+### 3. Customer Value Segmentation
+
+| Segment | Customers | Orders | Sales | Profit Margin |
+|---------|-----------|--------|-------|---------------|
 | Low Value | 500 | 2,472 | 67.86M | 16.36% |
 | Medium Value | 499 | 3,451 | 178.56M | 14.38% |
 | High Value | 499 | 4,077 | 363.11M | 13.28% |
 
-> Because these are equal-sized groups by design, the 59.6% share reflects how concentrated sales are among the top third of customers. It is not a discovered threshold.
+High-value customers generated about **59.6% of total sales**.
 
-**RFM segments.**
-`<TODO: describe scoring, e.g. R/F/M scored 1-5 with NTILE(5), and the rule for each segment. Example: Champions = R>=4 and F>=4, At Risk = R<=2 and F>=3 ...>`
+### 4. RFM Analysis
+
+**Recency** (how recently a customer purchased), **Frequency** (how often), **Monetary** (how much).
 
 | Segment | Customers | Orders | Historical Sales |
-| --- | --- | --- | --- |
-| Loyal | 444 | 3,522 | 192.59M |
+|---------|-----------|--------|------------------|
+| Loyal Customers | 444 | 3,522 | 192.59M |
 | Champions | 188 | 1,821 | 136.95M |
 | At Risk | 267 | 2,113 | 129.82M |
-| Lost | 323 | 1,337 | 75.55M |
-| New | 170 | 751 | 47.72M |
-| Potential | 106 | 456 | 26.91M |
+| Lost Customers | 323 | 1,337 | 75.55M |
+| New Customers | 170 | 751 | 47.72M |
+| Potential Customers | 106 | 456 | 26.91M |
 
-**Correlations (PostgreSQL):** Sales vs Profit 0.9466, Discount vs Sales -0.0552, Discount vs Profit -0.0645.
+### 5. Customer Profitability & CLV-Style Analysis
 
-## Power BI Dashboard
+Some customers generated more than 1M in sales but had margins of only 10–12%, while some lower-revenue customers achieved considerably higher margins. A simplified CLV-style analysis (total sales, total profit, number of orders, average order value, profit margin) was used to identify customers with stronger long-term value.
 
-A 4-page interactive dashboard built in Power BI.
+### 6. PostgreSQL Analysis
 
-### 1. Executive Overview
-KPIs, monthly sales trend, sales vs profit, order status mix and regional sales.
+```sql
+CREATE TABLE orders (
+    Order_ID VARCHAR(20) PRIMARY KEY,
+    Order_Date DATE,
+    Customer_ID VARCHAR(20),
+    Product_ID VARCHAR(20),
+    Quantity INTEGER,
+    Discount DECIMAL(5,2),
+    Sales DECIMAL(15,2),
+    Profit DECIMAL(15,2),
+    Payment_Method VARCHAR(50),
+    Order_Status VARCHAR(30)
+);
+```
 
-![Executive Overview](images/01_executive_overview.png)
+SQL techniques used: aggregations, conditional logic (CASE), CTEs, window functions, NTILE segmentation, ranking, month-over-month growth, RFM, customer segmentation, and correlation analysis.
 
-### 2. Product Performance
-Top products by sales and profit, margin by product, quantity vs sales.
+### 7. Correlation Analysis
 
-![Product Performance](images/02_product_performance.png)
+| Relationship | Correlation |
+|--------------|-------------|
+| Sales vs Profit | 0.9466 |
+| Discount vs Sales | -0.0552 |
+| Discount vs Profit | -0.0645 |
 
-### 3. Customer Intelligence
-Top customers, RFM segments and customer value segments.
+Sales and profit are strongly positively related, while discount shows only a weak negative relationship with sales and profit. Correlation indicates association, not causation.
 
-![Customer Intelligence](images/03_customer_intelligence.png)
+---
 
-### 4. Business Performance
-Payment methods, order status, discount impact and monthly margin.
+## Dashboard Preview
 
-![Business Performance](images/04_business_performance.png)
+The Power BI report contains four analytical pages.
 
-## More Insights
+### Page 1: Executive Overview
 
-- **Seasonality:** December is the strongest month (59.08M sales, 8.20M profit). February is the weakest (43.00M). The largest month-over-month jumps were March (+19.34%), December (+18.26%) and July (+11.37%).
-- **Payments:** bKash has the highest volume and sales. Card users have the highest margin (14.03%).
-- **Fulfilment:** About 8.8% of orders were cancelled or returned. Cost data would be needed to size the financial impact.
+High-level business performance: Total Sales, Total Profit, Profit Margin, Total Orders, Total Customers, Monthly Sales Trend, Sales vs Profit, Order Status, and Region-wise Sales.
 
-## Recommendations
+![Executive Overview](PowerBI/screenshots/01_executive_overview.png)
 
-1. **Protect High Value customers** with loyalty benefits and repeat-purchase campaigns, and investigate why their margin is lower.
-2. **Run reactivation campaigns** for the 267 At-Risk customers.
-3. **Review low-margin, high-sales products** for pricing, supplier cost, and discount level.
-4. **Replace blanket discounts with targeted ones** based on segment and product margin.
-5. **Investigate cancellations and returns** by product, customer, payment method, and delivery.
-6. **Plan inventory and support capacity** ahead of peak months such as December.
-7. **Rank customers by profit and margin as well as revenue.**
+### Page 2: Product Performance
 
-## Limitations
+Top 10 Products by Sales and Profit, Category Performance, Product Profit Margin, and Quantity vs Sales. Identifies high-revenue, high-profit, and high-margin products, and where sales and profitability differ.
 
-- Correlation does not show causation.
-- Seasonal patterns come from a single year of data. `<TODO: adjust if the data is synthetic>`
-- No cost, return-reason, or campaign data, so recommendations are directional.
+![Product Performance](PowerBI/screenshots/02_product_performance.png)
+
+### Page 3: Customer Intelligence
+
+Top 10 Customers by Sales, RFM Segment Count and Sales, Customer Value Segment Count and Sales. Shows customer contribution, loyalty, retention opportunities, and at-risk customers.
+
+![Customer Intelligence](PowerBI/screenshots/03_customer_intelligence.png)
+
+### Page 4: Business Performance
+
+Payment Method Analysis, Order Status Analysis, Discount Analysis, Monthly Profit Margin, and Executive KPI Cards. Focuses on payment behavior, fulfillment issues, discount patterns, and profitability trends.
+
+![Business Performance](PowerBI/screenshots/04_business_performance.png)
+
+---
+
+## Key Business Insights
+
+1. **December was the strongest month:** about 59.08M in sales and 8.20M in profit. February was the lowest at about 43.00M.
+2. **Growth was uneven:** the strongest month-over-month increases were March (+19.34%), December (+18.26%), and July (+11.37%).
+3. **High sales do not always mean high profit:** PROD-018 generated 26.29M in sales at an 8.16% margin, while PROD-054 generated 23.40M at a 17.05% margin.
+4. **High-value customers drive revenue:** 363.11M in sales, about 59.6% of the total, making retention critical.
+5. **At-Risk customers are a major opportunity:** 267 customers with about 129.82M in historical sales but weaker recent engagement.
+6. **Loyal Customers are the largest RFM segment:** 444 customers and about 192.59M in historical sales, a strong base for retention and cross-selling.
+7. **Revenue and profitability differ:** several high-sales customers have low margins, so customers should be evaluated on revenue, profit, margin, and purchase frequency together.
+8. **Payment methods differ:** bKash had the highest transaction volume and sales contribution, while Card users had the highest observed margin at about 14.03%.
+9. **Fulfillment needs monitoring:** about 8.8% of orders were cancelled or returned. Because the dataset records zero sales and profit for these orders, direct financial loss should not be assumed without additional cost data.
+10. **Discounts are not consistently effective:** weak negative correlations with sales and profit suggest discounts should be targeted, not applied broadly.
+
+---
+
+## Business Recommendations
+
+| # | Recommendation | Suggested Actions |
+|---|----------------|-------------------|
+| 1 | **Prioritize high-value customer retention** | Personalized offers, loyalty benefits, early access, repeat-purchase campaigns, personalized recommendations |
+| 2 | **Launch reactivation campaigns for At-Risk customers** | Reactivation emails, targeted offers, limited-time incentives, purchase-based recommendations, reminders. Goal: move them back to Loyal or Champion |
+| 3 | **Optimize product profitability** | Review pricing, supplier cost, discount level, operational cost, and positioning of high-sales, low-margin products |
+| 4 | **Replace blanket discounts with targeted discounts** | Target by customer segment, RFM segment, purchase history, product margin, and customer profitability |
+| 5 | **Improve cancellation and return management** | Investigate reasons, product-level patterns, delivery issues, customer-level patterns, and payment-method links. Collect additional operational data |
+| 6 | **Use seasonal demand planning** | Prepare inventory, marketing, product availability, delivery and support capacity for peak months like December |
+| 7 | **Manage customers by profitability** | Evaluate revenue, profit, margin, order frequency, average order value, and recency together |
+| 8 | **Monitor payment method performance** | Track volume, sales, profit, margin, cancellation rate, and return rate per method |
+
+---
 
 ## Skills Demonstrated
 
-**Python:** Pandas, NumPy, Matplotlib, data validation, EDA, RFM, profitability analysis
-**SQL (PostgreSQL):** aggregations, CASE, CTEs, JOINs, window functions, NTILE, ranking, correlation
-**Power BI:** data modeling, DAX measures, KPI cards, multi-page dashboard design
+**Python & Analytics:** Pandas, NumPy, Data Cleaning, Data Validation, EDA, Customer Segmentation, RFM Analysis, Customer Profitability, CLV-style Analysis, Correlation Analysis
+
+**SQL / PostgreSQL:** SELECT, WHERE, GROUP BY, ORDER BY, CASE, JOIN, CTE, Window Functions, NTILE, Aggregations, Ranking
+
+**Power BI:** Data Modeling, Relationships, DAX Measures, KPI Cards, Bar / Column / Line / Donut / Scatter Charts, Dashboard Design, Business Performance Reporting
+
+---
 
 ## Author
 
-**Sabbir Hossain**, aspiring Data Analyst | BI Engineer
-Python · SQL · PostgreSQL · Power BI · Excel
+**Sabbir Hossain**
+Aspiring Data Analyst | BI Engineer
+
+Python | SQL | PostgreSQL | Power BI | Excel
+
+- LinkedIn: [your-linkedin-url](https://www.linkedin.com/in/your-username)
+- GitHub: [your-github-username](https://github.com/your-username)
